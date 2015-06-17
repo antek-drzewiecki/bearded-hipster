@@ -28,6 +28,10 @@ sudo sed -e '/lp/ s/^#*/#/' -i /etc/modules
 print_header "Time to update initramfs!"
 sudo update-initramfs -u
 
+print_header "Setting default locales to en"
+sudo locale-gen en_US en_US.UTF-8
+sudo dpkg-reconfigure locales
+
 print_header "Configuring grub for faster boot"
 sudo sed -i '/GRUB_CMDLINE_LINUX_DEFAULT/c\GRUB_CMDLINE_LINUX_DEFAULT="quiet splash elevator=noop"' /etc/default/grub
 
